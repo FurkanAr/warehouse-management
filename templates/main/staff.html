@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+{% block title %} Staff Page {% endblock %}
+{% block content %}
+{% include 'partials/box.html' %}
+</br> </br>
+<div class="container">
+    <div class="row" style="margin-top:3%;">
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr style="background-color: #9CDBFA;">
+                    <th scope="col">Go</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <th scope="row"><a class="btn btn-info" href="{% url 'main-staff-detail' employee.id %}">View</a>
+                    </th>                    
+                    <td>{{employee}}</td>
+                    <td>{{employee.email}}</td>
+                    <td>{{employee.profile.phone}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+  {% endblock %}

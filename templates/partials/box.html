@@ -1,0 +1,79 @@
+<style>
+    h4 {
+        color:  red;
+    }
+    h5 {
+        color:black;
+    }
+    h2 {
+        color: #F08872;
+        font-family: "arial";
+        font-size: 3em;
+        margin: 10px 0 0 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        animation: animtext 4s steps(80, end);
+        transition: all cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    }
+
+    @keyframes animtext {
+        from {
+            width: 0;
+            transition: all 2s ease-in-out;
+        }
+    }
+</style>
+<div class="container">
+
+    <div class="row" style="margin-top:10%;">
+        <div class="col-md-4">
+            <h5 class="card-header text-center" style="background-color: #9CDBFA;">Info</h5>
+            <div class="card mt-1">
+            <div class="card-body">
+                <h2 class="card-title">Welcome!!</h2>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="col-md-8">
+            <h5 class="card-header text-center" style="background-color:#9CDBFA;">Statistics</h5>
+            <div class="row mt-1">
+                <div class="col-md-4 text-center">
+                    <div class="card" style="border-radius: 20px;             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    ">
+                        <div class="card-body">
+                            <h4 class="card-title">Staff</h4>
+                            <p class="card-text"> {{employees_count}}
+                            </p>
+                            <a href="{% url 'main-staff' %}" class="btn btn-primary">Go Staff Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="card" style="border-radius: 20px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    ">
+                        <div class="card-body">
+                            <h4 class="card-title">Products</h4>
+                            <p class="card-text"> {{items_count}}
+                            </p>
+                            <a href="{% url 'main-product' %}" class="btn btn-primary">Go Product Page</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="card" style="border-radius: 20px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    ">
+                        <div class="card-body">
+                            <h4 class="card-title">Orders</h4>
+                            <p class="card-text">  {{orders_count}}
+                            </p>
+                            <a href="{% url 'main-order' %}" class="btn btn-primary">Go Order Page</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

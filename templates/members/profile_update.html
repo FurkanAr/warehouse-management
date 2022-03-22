@@ -1,0 +1,30 @@
+{% extends 'partials/base.html' %}
+{% block title %} Profile Update Page {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+      background-color: #C9FFBB;
+    }
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+    </style>
+  <br> <br>  <br>
+
+<h1 class="text-center mt-2" style="color:Tomato;" > Update Profile : {{user}}  </h1>
+<hr>
+<div class="col-md-8 text-center center">
+<form class="mb-4" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <input type="submit" value="Submit" class="btn btn-success mt-1">
+</form>
+</div>
+
+{% endblock %}

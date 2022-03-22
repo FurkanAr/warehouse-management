@@ -1,0 +1,96 @@
+{% extends 'partials/base.html' %}
+{% block title %} Home Page {% endblock %}
+
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+
+</br> </br>
+{% include 'partials/box.html' %}
+</br> </br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="border p-3" style="background-color: #FBDDFF;">
+
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+                <script>
+                    var xValues = [{% for product in products %} '{{product.name}}', {% endfor %}];
+                    var yValues = [{% for product in products %} '{{product.quantity}}', {% endfor %}];
+                    var barColors = ["red", "green", "blue", "orange", "brown", "black", "gray", "yellow", "aqua", "purple"];
+
+                    new Chart("myChart", {
+                        type: "bar",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: "Product Quantity in 2022"
+                            }
+                        }
+                    });
+                </script>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="border p-3" style="background-color: #FBDDFF;">
+                <canvas id="myChart2" style="width:100%;max-width:400px"></canvas>
+
+                <script>
+                    var xValues = [{% for order in orders %} '{{order.product.name}}', {% endfor %}];
+                    var yValues = [55, 49, 44, 24, 15];
+                    var barColors = [
+                        "#b91d47",
+                        "#00aba9",
+                        "#2b5797",
+                        "#e8c3b9",
+                        "#1e7145",
+                        "#E55F35",
+                        "#73E535",
+                        "#D135E5",
+                        "#E535BD",
+                        "#93E6D4",
+                        "#93A4E6",
+
+                    ];
+
+                    new Chart("myChart2", {
+                        type: "pie",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: [{% for order in orders %} '{{order.order_quantity}}' ,{% endfor %}],
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "Product Orders in 2022"
+                            }
+                        }
+                    });
+                </script>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% else %}
+    {% include 'main/user_index.html' %}
+{% endif%}
+
+
+
+    {% endblock %}

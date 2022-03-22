@@ -1,0 +1,56 @@
+{% extends 'partials/base.html' %}
+{% block title %} Product Page {% endblock %}
+{% block content %}
+
+{% include 'partials/box.html' %}
+</br> </br>
+<div class="container">
+    <div class="row" style="margin-top:3%;">
+        <div class="col-md-4">
+            {% if messages %}
+                {% for message in messages %}
+                    <div  class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="border bg-info p-3">
+                <h3> Add Product </h3>
+                <form class="mt-4" action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit" class="btn btn-success mt-1">
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr style="background-color: #9CDBFA;">
+                    <th scope="col">Product</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Activity</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{item.name}}</td>
+                        <td>{{item.category}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{% url 'main-product-update' item.id %}"> Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'main-product-delete' item.id %}"> Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+  {% endblock %}
